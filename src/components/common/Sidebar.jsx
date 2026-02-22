@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Dashboard,
@@ -62,7 +71,9 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
 
       <List sx={{ px: 2, flexGrow: 1 }}>
         {menuItems.map((item) => {
-          const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+          const isActive =
+            location.pathname === item.path ||
+            (item.path !== "/" && location.pathname.startsWith(item.path));
           return (
             <ListItem disablePadding key={item.text} sx={{ mb: 1 }}>
               <ListItemButton
@@ -103,7 +114,10 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
   );
 
   return (
-    <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+    <Box
+      component="nav"
+      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+    >
       {/* Mobile Drawer */}
       <Drawer
         variant="temporary"
