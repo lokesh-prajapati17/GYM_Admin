@@ -1,9 +1,10 @@
 import axios from "axios";
 import store from "../store";
 import { logout } from "../store/authSlice";
+import { BASE_URL } from "./constants";
 
 const api = axios.create({
-    baseURL: "http://localhost:5000/api/admin",
+    baseURL: BASE_URL,
     headers: {
         "Content-Type": "application/json",
     },

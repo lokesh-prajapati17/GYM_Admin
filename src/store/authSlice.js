@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { encryptData, decryptData } from "../utils/cryptoUtils";
 
 const initialState = {
-    user: JSON.parse(localStorage.getItem("adminUser")) || null,
-    token: localStorage.getItem("adminToken") || null,
+    user: decryptData(localStorage.getItem("adminUser"), true) || null,
+    token: decryptData(localStorage.getItem("adminToken")) || null,
     isAuthenticated: !!localStorage.getItem("adminToken"),
 };
 
@@ -14,8 +15,8 @@ const authSlice = createSlice({
             state.user = action.payload.user;
             state.token = action.payload.token;
             state.isAuthenticated = true;
-            localStorage.setItem("adminUser", JSON.stringify(action.payload.user));
-            localStorage.setItem("adminToken", action.payload.token);
+            localStorage.setItem("adminUser", encryptData(action.payload.user));
+            localStorage.setItem("adminToken", encryptData(action.payload.token));
         },
         logout: (state) => {
             state.user = null;
@@ -26,7 +27,7 @@ const authSlice = createSlice({
         },
         updateUser: (state, action) => {
             state.user = { ...state.user, ...action.payload };
-            localStorage.setItem("adminUser", JSON.stringify(state.user));
+            localStorage.setItem("adminUser", encryptData(state.user));
         },
     },
 });
